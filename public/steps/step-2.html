@@ -1,0 +1,120 @@
+<!-- Step 2: Business Continuity -->
+<div class="step-container">
+  <div class="step-badge">Step 2 of 6</div>
+  <h2>Business Continuity (Resiliency)</h2>
+  <p class="step-intro">Cloudflare provides multiple layers of built-in resilience ensuring serverless applications remain available even during partial outages.</p>
+
+  <div class="accordion" id="resiliencyAccordion">
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)" aria-expanded="false">
+        <span>Global Anycast Network</span>
+        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-content">
+        <p>Cloudflare's global Anycast network (including <a href="https://blog.cloudflare.com/meet-traffic-manager/" target="_blank" rel="noopener">Traffic Manager</a>) automatically handles resiliency for data-in-transit (Data Plane). Requests are routed to the nearest healthy data center; if one goes down, traffic is seamlessly redistributed.</p>
+        <div class="callout callout-tip">
+          <strong>Built-in Resiliency:</strong> <br>Anycast provides automatic failover at the network level with zero customer configuration.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)" aria-expanded="false">
+        <span>D1 Time Travel &amp; Backups</span>
+        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-content">
+        <p><strong><a href="https://developers.cloudflare.com/d1/reference/time-travel/" target="_blank" rel="noopener">Time Travel</a></strong> enables point-in-time database restoration to any minute within the last 30 days. Essential for recovering from data corruption or accidental deletions.</p>
+        <div class="callout callout-info">
+          <strong>Always on, zero cost:</strong> <br>Time Travel is enabled by default on every D1 database &mdash; no manual backups needed. Bookmarks are also used by the <a href="https://developers.cloudflare.com/d1/best-practices/read-replication/#sessions-api-examples" target="_blank" rel="noopener">Sessions API</a> to guarantee sequential read consistency across replicas.
+        </div>
+        <div class="code-block">
+          <div class="code-header">
+            <span>Restore a D1 database</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre><code>npx wrangler d1 time-travel restore my-db \
+  --timestamp="2026-03-01T12:00:00Z"</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)" aria-expanded="false">
+        <span>Workflows &amp; Queues</span>
+        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-content">
+        <p>Implement natively resilient solutions:</p>
+        <div class="two-col">
+          <div>
+            <h4><a href="https://developers.cloudflare.com/queues/" target="_blank" rel="noopener">Queues</a></h4>
+            <ul>
+              <li>At-least-once delivery</li>
+              <li>Configurable retries per message</li>
+              <li>Fan-out &amp; batching</li>
+            </ul>
+            <div class="callout callout-info" style="margin-top:0.5rem;">
+              <strong>Tip:</strong> <br>Use <a href="https://developers.cloudflare.com/queues/configuration/dead-letter-queues/" target="_blank" rel="noopener">Dead Letter Queues</a> for messages that exceed max retries, and <a href="https://developers.cloudflare.com/queues/event-subscriptions/" target="_blank" rel="noopener">Event Subscriptions</a> to react to events from R2, KV, Workers AI, and more.
+            </div>
+          </div>
+          <div>
+            <h4><a href="https://developers.cloudflare.com/workflows/" target="_blank" rel="noopener">Workflows</a></h4>
+            <ul>
+              <li>Durable multi-step execution</li>
+              <li>Per-step retry (not full job)</li>
+              <li>Run for hours, days, or weeks</li>
+            </ul>
+            <div class="callout callout-info" style="margin-top:0.5rem;">
+              <strong>Durable Execution:</strong> <br>Once a step completes it never re-executes, even if later steps fail. Workflows can <a href="https://developers.cloudflare.com/workflows/build/sleeping-and-retrying/" target="_blank" rel="noopener">sleep or wait for events</a> for up to one year, and idle time incurs zero CPU cost.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)" aria-expanded="false">
+        <span>Error Handling &amp; Observability</span>
+        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-content">
+        <p>Implement <code>try&hellip;catch</code> blocks in your <a href="https://developers.cloudflare.com/workers/" target="_blank" rel="noopener">Workers</a> and <a href="https://developers.cloudflare.com/rules/snippets/" target="_blank" rel="noopener">Snippets</a> code to handle sub-request failures and errors. If a binding (e.g., Workers KV) is down, fall back to the origin or an alternative failover provider.</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span>Resilient Worker pattern</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre><code>export default {
+  async fetch(request, env) {
+    try {
+      const data = await env.MY_KV.get("key");
+      if (data) return new Response(data);
+    } catch (e) {
+      console.error("KV failed, falling back");
+    }
+    return fetch(request); // Fallback to origin
+  },
+} satisfies ExportedHandler&lt;Env&gt;;</code></pre>
+        </div>
+        <div class="callout callout-warning">
+          <strong>Best Practice:</strong> <br>Configure <a href="https://developers.cloudflare.com/rules/custom-errors/" target="_blank" rel="noopener">Custom Errors</a> to return branded content when origin or product errors occur.
+        </div>
+        <div class="callout callout-tip">
+          <strong>Observability:</strong> <br>Enable <a href="https://developers.cloudflare.com/workers/observability/logs/workers-logs/" target="_blank" rel="noopener">Workers Logs</a> for automatic log ingestion and analysis, use <a href="https://developers.cloudflare.com/workers/observability/logs/tail-workers/" target="_blank" rel="noopener">Tail Workers</a> for custom filtering, and review your <a href="https://developers.cloudflare.com/workers/observability/" target="_blank" rel="noopener">Observability</a> settings to ensure full visibility into production behavior.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-nav">
+    <button class="btn btn-secondary" onclick="goToStep(1)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back
+    </button>
+    <button class="btn btn-primary" onclick="goToStep(3)">
+      Next: Data Security
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</div>

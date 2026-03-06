@@ -1,0 +1,83 @@
+<!-- Step 7: Knowledge Check (Quiz) -->
+<div class="step-container">
+  <div class="step-badge">Knowledge Check</div>
+  <h2>Test Your Knowledge</h2>
+  <p class="step-intro">Answer 5 questions to check your understanding of compliance-aware serverless architectures.</p>
+
+  <!-- Question progress indicator -->
+  <div class="quiz-progress" id="quizProgress">
+    <span class="quiz-progress-label" id="quizProgressLabel">Question 1 of 5</span>
+    <div class="quiz-progress-bar">
+      <div class="quiz-progress-fill" id="quizProgressFill" style="width: 20%"></div>
+    </div>
+  </div>
+
+  <div class="quiz" id="quiz">
+    <div class="quiz-question active" data-q="0">
+      <p class="quiz-q">1. Which encryption standard is used at rest across R2, D1, and Durable Objects?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="checkAnswer(this, false)">AES-128</button>
+        <button class="quiz-option" onclick="checkAnswer(this, true)">AES-256</button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">RSA-2048</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+    <div class="quiz-question" data-q="1">
+      <p class="quiz-q">2. When can you set a jurisdiction on a D1 database?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="checkAnswer(this, true)">Only at creation time</button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">At any time via the dashboard</button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">During the first write operation</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+    <div class="quiz-question" data-q="2">
+      <p class="quiz-q">3. What are the three components of the Data Localization Suite (DLS)?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="checkAnswer(this, false)">KV, R2, D1</button>
+        <button class="quiz-option" onclick="checkAnswer(this, true)">GKM, Regional Services, CMB</button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">Workers, Pages, Functions</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+    <div class="quiz-question" data-q="3">
+      <p class="quiz-q">4. Which DLS component is an account-level setting?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="checkAnswer(this, false)">Geo Key Manager</button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">Regional Services</button>
+        <button class="quiz-option" onclick="checkAnswer(this, true)">Customer Metadata Boundary</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+    <div class="quiz-question" data-q="4">
+      <p class="quiz-q">5. Which feature enables point-in-time database restoration within 30 days?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="checkAnswer(this, false)">R2 Versioning</button>
+        <button class="quiz-option" onclick="checkAnswer(this, true)">D1 Time Travel</button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">DO Snapshots</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </div>
+
+  <div class="quiz-score" id="quizScore" style="display:none;">
+    <div class="score-circle" id="scoreCircle">
+      <span id="scoreText">0/5</span>
+    </div>
+    <p id="scoreMessage"></p>
+    <div class="quiz-score-actions">
+      <button class="btn btn-secondary" onclick="resetQuiz()">Try Again</button>
+      <button class="btn btn-primary" onclick="goToStep(6)">
+        Back to Summary
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="step-nav">
+    <button class="btn btn-secondary" onclick="goToStep(6)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Summary
+    </button>
+  </div>
+</div>

@@ -1,0 +1,152 @@
+<!-- Step 3: Data Security -->
+<div class="step-container">
+  <div class="step-badge">Step 3 of 6</div>
+  <h2>Data Security</h2>
+  <p class="step-intro">Automatic, transparent encryption at every layer with no performance impact or user configuration required.</p>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(this, 'tab-rest')">Encryption at Rest</button>
+    <button class="tab" onclick="switchTab(this, 'tab-transit')">Encryption in Transit</button>
+    <button class="tab" onclick="switchTab(this, 'tab-access')">Access &amp; Secrets</button>
+    <button class="tab" onclick="switchTab(this, 'tab-privacy')">Privacy</button>
+  </div>
+
+  <!-- Encryption at Rest -->
+  <div class="tab-panel active" id="tab-rest">
+    <div class="callout callout-tip" style="margin-bottom:0.75rem;">
+      <strong>Automatic &amp; Transparent:</strong> <br>Data is encrypted across the entire developer platform without requiring user configuration or impacting performance.
+    </div>
+    <div class="encryption-grid">
+      <div class="enc-card">
+        <div class="enc-badge">R2</div>
+        <h4><a href="https://developers.cloudflare.com/r2/reference/data-security/" target="_blank" rel="noopener">Object Storage</a></h4>
+        <p>Objects and all metadata encrypted using <strong>AES-256 (GCM mode)</strong>.</p>
+      </div>
+      <div class="enc-card">
+        <div class="enc-badge">D1</div>
+        <h4><a href="https://developers.cloudflare.com/d1/reference/data-security/" target="_blank" rel="noopener">Serverless SQL</a></h4>
+        <p>Live &amp; inactive databases and metadata encrypted using <strong>AES-256 (GCM mode)</strong>.</p>
+      </div>
+      <div class="enc-card">
+        <div class="enc-badge">DO</div>
+        <h4><a href="https://developers.cloudflare.com/durable-objects/reference/data-security/" target="_blank" rel="noopener">Durable Objects</a></h4>
+        <p>In-memory state, persisted data, and metadata encrypted using <strong>AES-256</strong> and <strong>LUKS</strong>.</p>
+      </div>
+    </div>
+
+    <h3>Advanced Encryption Options</h3>
+    <div class="advanced-enc-grid">
+      <div class="adv-enc-card">
+        <div class="adv-enc-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="adv-enc-icon"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>
+          <h4><a href="https://developers.cloudflare.com/r2/examples/ssec/" target="_blank" rel="noopener">SSE-C (Server-Side Encryption)</a></h4>
+        </div>
+        <p>R2 supports <strong>Server-Side Encryption with Customer-Provided Keys</strong>. You supply your own key on every <code>put</code>/<code>get</code> request &mdash; Cloudflare encrypts/decrypts server-side but never stores your key. Compatible with the S3 API and Workers Bindings (<code>ssecKey</code> parameter).</p>
+        <div class="callout callout-warning" style="margin-top:0.5rem;">
+          <strong>Key responsibility is yours:</strong> <br>If you lose your SSE-C key, Cloudflare cannot recover the object body. Store keys in the <a href="https://developers.cloudflare.com/secrets-store/" target="_blank" rel="noopener">Secrets Store</a> or an external KMS.
+        </div>
+      </div>
+      <div class="adv-enc-card">
+        <div class="adv-enc-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="adv-enc-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 11v4"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg>
+          <h4>Client-Side Encryption</h4>
+        </div>
+        <p>Encrypt data <strong>before upload</strong> using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto" target="_blank" rel="noopener">Web Crypto API</a> (available in Workers) or any library. The ciphertext is what gets stored in R2/D1/DO &mdash; Cloudflare never sees the plaintext. This is one of the strongest privacy guarantees: <strong>zero-knowledge storage</strong>.</p>
+        <div class="callout callout-tip" style="margin-top:0.5rem;">
+          <strong>Best for:</strong> <br>PII, PHI, financial records, or any data where even the storage provider should not have access to content.
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-info">
+      <strong>Key Management:</strong> <br>Default encryption keys are managed by Cloudflare's internal key management systems. For SSE-C or client-side encryption, you manage your own keys &mdash; use the <a href="https://developers.cloudflare.com/secrets-store/" target="_blank" rel="noopener">Secrets Store</a> for secure distribution.
+    </div>
+  </div>
+
+  <!-- Encryption in Transit -->
+  <div class="tab-panel" id="tab-transit">
+    <div class="compact-features">
+      <div class="feature-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <div><strong><a href="https://developers.cloudflare.com/ssl/" target="_blank" rel="noopener">Strict TLS/SSL</a></strong> &mdash; All data transferred (data-in-transit) between clients, Cloudflare Workers, and backend storage (R2, D1, Durable Objects) is secured using TLS/SSL.</div>
+      </div>
+      <br>
+      <div class="feature-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div><strong>Secure API Access</strong> &mdash; Access via <a href="https://blog.cloudflare.com/https-only-for-cloudflare-apis-shutting-the-door-on-cleartext-traffic/" target="_blank" rel="noopener">HTTPS-only APIs</a> or the Wrangler CLI is strictly enforced over HTTPS. Developers can also use <a href="https://developers.cloudflare.com/workers/runtime-apis/bindings/" target="_blank" rel="noopener">Bindings</a> within a Worker to interact with resources in-process &mdash; no network hop.</div>
+      </div>
+      <br>
+      <div class="feature-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <div><strong>Protocol Enforcement</strong> &mdash; Plaintext HTTP can be entirely disabled. Enable <a href="https://developers.cloudflare.com/ssl/edge-certificates/additional-options/http-strict-transport-security/" target="_blank" rel="noopener">HSTS</a> to instruct browsers to always use HTTPS. Developers can choose which <a href="https://developers.cloudflare.com/ssl/edge-certificates/additional-options/minimum-tls/" target="_blank" rel="noopener">TLS version</a> and <a href="https://developers.cloudflare.com/ssl/edge-certificates/additional-options/cipher-suites/" target="_blank" rel="noopener">cipher suites</a> to enforce.</div>
+      </div>
+      <br>
+      <div class="feature-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7v6.5c0 5.25 4.27 10.15 10 11.5 5.73-1.35 10-6.25 10-11.5V7L12 2z"/><path d="M8 12l3 3 5-5"/></svg>
+        <div><strong><a href="https://developers.cloudflare.com/ssl/post-quantum-cryptography/" target="_blank" rel="noopener">Post-Quantum Cryptography (PQC)</a></strong> &mdash; All TLS 1.3 connections support <strong>X25519MLKEM768</strong> hybrid key agreement, protecting against <em>harvest now, decrypt later</em> attacks. PQC is enabled by default for visitors &rarr; Cloudflare, and internal connections are already PQ-secured. <a href="https://developers.cloudflare.com/ssl/post-quantum-cryptography/pqc-to-origin/" target="_blank" rel="noopener">Origin connections</a> support PQC too when your origin is configured for it.</div>
+      </div>
+      <br>
+      <div class="feature-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M4 12h16"/><path d="M12 4v16"/></svg>
+        <div><strong><a href="https://developers.cloudflare.com/rules/configuration-rules/settings/#request-body-buffering" target="_blank" rel="noopener">Body Buffering Controls</a></strong> &mdash; <a href="https://developers.cloudflare.com/rules/configuration-rules/" target="_blank" rel="noopener">Configuration Rules</a> let you control how Cloudflare buffers request/response bodies. Set to <strong>None</strong> to stream data directly without inspection (zero-read pass-through), or <strong>Full</strong> to buffer entirely before forwarding. Useful when compliance requires that Cloudflare does not inspect certain requests.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Access & Secrets -->
+  <div class="tab-panel" id="tab-access">
+    <div class="compact-features">
+      <div class="feature-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+        <div><strong><a href="https://developers.cloudflare.com/fundamentals/manage-members/roles/" target="_blank" rel="noopener">Role-Based Access Control</a></strong> &mdash; Administrators can assign <a href="https://developers.cloudflare.com/fundamentals/manage-members/scope/#specific-resources" target="_blank" rel="noopener">granular roles</a> to developers, with specific permission types across dashboard and API. Use scoped <a href="https://developers.cloudflare.com/fundamentals/api/get-started/create-token/" target="_blank" rel="noopener">API Tokens</a> with <a href="https://developers.cloudflare.com/fundamentals/api/reference/permissions/" target="_blank" rel="noopener">least-privilege permissions</a> for programmatic access.</div>
+      </div>
+      <br>
+      <div class="feature-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <div><strong><a href="https://developers.cloudflare.com/workers/configuration/secrets/" target="_blank" rel="noopener">Encrypted Secrets</a></strong> &mdash; Workers allow developers to use encrypted environment variables (Secrets), ensuring sensitive API keys and tokens are never hardcoded in source code. For centralized, account-level secrets management, use the <a href="https://developers.cloudflare.com/secrets-store/" target="_blank" rel="noopener">Secrets Store</a> &mdash; a dedicated service that encrypts and distributes secrets across all Cloudflare data centers.</div>
+      </div>
+      <br>
+      <div class="feature-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div><strong><a href="https://developers.cloudflare.com/workers/runtime-apis/bindings/mtls/" target="_blank" rel="noopener">Mutual TLS (mTLS)</a></strong> &mdash; Workers can be configured to use mTLS to securely authenticate and communicate with backend servers or external APIs.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy -->
+  <div class="tab-panel" id="tab-privacy">
+    <div class="callout callout-info" style="margin-bottom:0.75rem;">
+      <strong>Cloudflare Privacy Platform:</strong> <br>A suite of enterprise services that let you build <a href="https://www.cloudflare.com/privacy-platform/" target="_blank" rel="noopener">privacy-preserving products</a> using IETF standards. Separate user identity from user activity at the network level.
+    </div>
+    <div class="advanced-enc-grid">
+      <div class="adv-enc-card">
+        <div class="adv-enc-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="adv-enc-icon"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <h4><a href="https://developers.cloudflare.com/privacy-proxy/" target="_blank" rel="noopener">Privacy Proxy</a></h4>
+        </div>
+        <p>A <strong>MASQUE-based</strong> forward proxy that separates user identity from user activity. Users authenticate to the proxy without revealing which destinations they visit; destination servers see Cloudflare IPs without learning who made the request. Powers <strong>Microsoft Edge Secure Network</strong> and acts as a second-hop relay for <strong>iCloud Private Relay</strong>.</p>
+      </div>
+      <div class="adv-enc-card">
+        <div class="adv-enc-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="adv-enc-icon"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><line x1="12" y1="15" x2="12" y2="17"/></svg>
+          <h4><a href="https://developers.cloudflare.com/privacy-gateway/" target="_blank" rel="noopener">Privacy Gateway</a></h4>
+        </div>
+        <p>Implements the <strong>Oblivious HTTP (OHTTP)</strong> IETF standard. A trusted relay forwards encrypted requests between client and server &mdash; the relay cannot read application data, and the server cannot see the client&rsquo;s IP. Ideal for privacy-sensitive APIs, telemetry, and analytics endpoints.</p>
+      </div>
+    </div>
+    <div class="callout callout-tip">
+      <strong>Compliance relevance:</strong> <br>Privacy Proxy and Privacy Gateway help meet <strong>GDPR data minimization</strong> requirements by ensuring PII (like IP addresses) is never exposed to application backends.
+    </div>
+  </div>
+
+  <div class="step-nav">
+    <button class="btn btn-secondary" onclick="goToStep(2)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back
+    </button>
+    <button class="btn btn-primary" onclick="goToStep(4)">
+      Next: Jurisdictional Restrictions
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</div>
