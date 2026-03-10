@@ -8,7 +8,7 @@ let currentStep = 0;
 let visitedSteps = new Set([0]);
 let quizScore = 0;
 let quizAnswered = 0;
-const QUIZ_TOTAL = 5;
+const QUIZ_TOTAL = 8;
 let menuOpen = false;
 const loadedSteps = new Set();
 
@@ -294,7 +294,7 @@ function showQuizScore() {
   if (scoreMsg) {
     if (quizScore === QUIZ_TOTAL) {
       scoreMsg.textContent = 'Perfect score! Solid understanding of compliance-aware serverless setups.';
-    } else if (quizScore >= 3) {
+    } else if (quizScore >= 5) {
       scoreMsg.textContent = 'Good job! Review the sections you missed for a complete understanding.';
     } else {
       scoreMsg.textContent = 'Consider reviewing the walkthrough again to strengthen your knowledge.';

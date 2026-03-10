@@ -9,6 +9,7 @@
     <button class="tab" onclick="switchTab(this, 'tab-transit')">Encryption in Transit</button>
     <button class="tab" onclick="switchTab(this, 'tab-access')">Access &amp; Secrets</button>
     <button class="tab" onclick="switchTab(this, 'tab-privacy')">Privacy</button>
+    <button class="tab" onclick="switchTab(this, 'tab-trust')">Trust &amp; Transparency</button>
   </div>
 
   <!-- Encryption at Rest -->
@@ -136,6 +137,32 @@
     </div>
     <div class="callout callout-tip">
       <strong>Compliance relevance:</strong> <br>Privacy Proxy and Privacy Gateway help meet <strong>GDPR data minimization</strong> requirements by ensuring PII (like IP addresses) is never exposed to application backends.
+    </div>
+  </div>
+
+  <!-- Trust & Transparency -->
+  <div class="tab-panel" id="tab-trust">
+    <div class="callout callout-info" style="margin-bottom:0.75rem;">
+      <strong>Transparency by default:</strong> <br>Cloudflare publishes transparency data and maintains strong privacy commitments as part of its core business model.
+    </div>
+    <div class="compact-features">
+      <div class="feature-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <div><strong><a href="https://www.cloudflare.com/transparency/" target="_blank" rel="noopener">Transparency Report</a></strong> &mdash; Published semi-annually. Covers law enforcement requests, national security orders, and government data requests. Cloudflare has <strong>never</strong> turned over encryption or authentication keys, installed any law enforcement software on its network, provided any government a feed of content transiting the network, or modified content at the request of law enforcement. These are maintained as standing <strong><a href="https://www.cloudflare.com/learning/privacy/what-is-warrant-canary/" target="_blank" rel="noopener">warrant canary</a></strong> commitments.</div>
+      </div>
+      <br>
+      <div class="feature-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 11v4"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg>
+        <div><strong><a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Privacy-First Business Model</a></strong> &mdash; Cloudflare does not sell personal data and does not data-mine user traffic for advertising. Revenue comes from security and performance products, not from monetizing personal information.</div>
+      </div>
+      <br>
+      <div class="feature-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
+        <div><strong><a href="https://www.cloudflare.com/trust-hub/responsible-ai/" target="_blank" rel="noopener">Responsible AI</a></strong> &mdash; Cloudflare does not train LLMs on customer data. Under the <a href="https://artificialintelligenceact.eu/" target="_blank" rel="noopener">EU AI Act</a>, inference-only workloads like Workers AI do not carry the same obligations as training-phase AI or high-risk AI systems. <a href="https://blog.cloudflare.com/introducing-ai-crawl-control/" target="_blank" rel="noopener">AI Crawl Control</a> gives site owners transparency and control over how AI bots interact with their content.</div>
+      </div>
+    </div>
+    <div class="callout callout-tip">
+      <strong>Talking point:</strong> <br>Cloudflare&rsquo;s warrant canary commitments and transparency reports provide verifiable assurance that goes beyond certifications &mdash; it demonstrates operational trustworthiness.
     </div>
   </div>
 

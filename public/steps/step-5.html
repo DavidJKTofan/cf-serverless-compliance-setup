@@ -36,22 +36,31 @@
     <div class="stack-diagram">
       <div class="stack-layer layer-3">
         <span class="stack-label">Customer Metadata Boundary (CMB)</span>
-        <span class="stack-desc">Account-level &mdash; Logs &amp; metadata region</span>
+        <span class="stack-desc">Account-level &mdash; Customer Logs (as defined by Privacy Policy)</span>
       </div>
       <div class="stack-layer layer-2">
-        <span class="stack-label">Regional Services (RS)</span>
-        <span class="stack-desc">DNS-level &mdash; TLS termination &amp; HTTP processing region</span>
+        <span class="stack-label">Geo Key Manager (GKM)</span>
+        <span class="stack-desc">Certificate-level &mdash; Private key storage region (can cover multiple hostnames)</span>
       </div>
       <div class="stack-layer layer-1">
-        <span class="stack-label">Geo Key Manager (GKM)</span>
-        <span class="stack-desc">Certificate-level &mdash; Private key storage region</span>
+        <span class="stack-label">Regional Services (RS)</span>
+        <span class="stack-desc">DNS-level &mdash; TLS termination &amp; HTTP processing region (per hostname)</span>
       </div>
     </div>
+  </div>
+
+  <div class="callout callout-tip">
+    <strong>Complementary (Add-On): <a href="https://developers.cloudflare.com/ssl/keyless-ssl/" target="_blank" rel="noopener">Keyless SSL</a></strong> <br>For organizations that cannot allow private keys to leave their infrastructure, Keyless SSL keeps the private key on the customer&rsquo;s own Hardware Security Module (HSM) or key server. During TLS handshakes, Cloudflare sends only the <a href="https://blog.cloudflare.com/keyless-ssl-the-nitty-gritty-technical-details/" target="_blank" rel="noopener">specific cryptographic operation</a> to the customer&rsquo;s key server over a mutually-authenticated TLS tunnel or Cloudflare Tunnel &mdash; the private key <strong>never</strong> touches Cloudflare&rsquo;s network.
+  </div>
+
+  <div class="callout callout-warning">
+    <strong>Product compatibility:</strong> <br>Review the <a href="https://developers.cloudflare.com/data-localization/compatibility/" target="_blank" rel="noopener">Product Compatibility table</a> before designing your architecture to confirm which services work with GKM, RS, and CMB.
   </div>
 
   <div class="doc-links-inline">
     <a href="https://developers.cloudflare.com/data-localization/" target="_blank" rel="noopener">DLS Overview</a>
     <a href="https://developers.cloudflare.com/data-localization/compatibility/" target="_blank" rel="noopener">Product Compatibility</a>
+    <a href="https://developers.cloudflare.com/ssl/keyless-ssl/" target="_blank" rel="noopener">Keyless SSL</a>
   </div>
 
   <div class="step-nav">

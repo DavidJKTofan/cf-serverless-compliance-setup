@@ -2,13 +2,13 @@
 <div class="step-container">
   <div class="step-badge">Knowledge Check</div>
   <h2>Test Your Knowledge</h2>
-  <p class="step-intro">Answer 5 questions to check your understanding of compliance-aware serverless architectures.</p>
+  <p class="step-intro">Answer 8 questions to check your understanding of compliance-aware serverless architectures.</p>
 
   <!-- Question progress indicator -->
   <div class="quiz-progress" id="quizProgress">
-    <span class="quiz-progress-label" id="quizProgressLabel">Question 1 of 5</span>
+    <span class="quiz-progress-label" id="quizProgressLabel">Question 1 of 8</span>
     <div class="quiz-progress-bar">
-      <div class="quiz-progress-fill" id="quizProgressFill" style="width: 20%"></div>
+      <div class="quiz-progress-fill" id="quizProgressFill" style="width: 12.5%"></div>
     </div>
   </div>
 
@@ -58,11 +58,38 @@
       </div>
       <div class="quiz-feedback"></div>
     </div>
+    <div class="quiz-question" data-q="5">
+      <p class="quiz-q">6. What does Cloudflare&rsquo;s warrant canary confirm?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="checkAnswer(this, false)">That all data centers are in the EU</button>
+        <button class="quiz-option" onclick="checkAnswer(this, true)">That Cloudflare has never turned over encryption keys or installed law enforcement software on its network</button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">That Cloudflare encrypts data with AES-512</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+    <div class="quiz-question" data-q="6">
+      <p class="quiz-q">7. Does Cloudflare train large language models (LLMs) on customer data via Workers AI?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="checkAnswer(this, false)">Yes, to improve model accuracy</button>
+        <button class="quiz-option" onclick="checkAnswer(this, true)">No &mdash; Workers AI runs inference only and does not train on customer data</button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">Only if the customer opts in</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+    <div class="quiz-question" data-q="7">
+      <p class="quiz-q">8. What does the DORA regulation (effective Jan 2025) primarily require?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="checkAnswer(this, false)">All EU data must be encrypted with post-quantum algorithms</button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">Cloud providers must open-source their infrastructure code</button>
+        <button class="quiz-option" onclick="checkAnswer(this, true)">EU financial entities must ensure their ICT systems can withstand operational disruptions</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
   </div>
 
   <div class="quiz-score" id="quizScore" style="display:none;">
     <div class="score-circle" id="scoreCircle">
-      <span id="scoreText">0/5</span>
+      <span id="scoreText">0/8</span>
     </div>
     <p id="scoreMessage"></p>
     <div class="quiz-score-actions">
