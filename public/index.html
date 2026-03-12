@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Compliance-aware Serverless Setup | Cloudflare SE Learning</title>
-  <meta name="description" content="Interactive walkthrough on building compliance-aware serverless architectures with Cloudflare Workers, R2, D1, and Durable Objects." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9729;</text></svg>" />
+  <meta name="description"
+    content="Interactive walkthrough on building compliance-aware serverless architectures with Cloudflare Workers, R2, D1, and Durable Objects." />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9729;</text></svg>" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
+
 <body>
   <!-- Top navigation bar -->
   <nav class="top-bar">
     <div class="top-bar-inner">
       <div class="logo-area">
-        <svg class="cf-logo" viewBox="0 0 65 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cloudflare logo">
-          <path d="M13.23 13.57c.09-.31.04-.6-.15-.82-.17-.2-.42-.31-.7-.34L5.72 12.3a.14.14 0 0 1-.12-.08.14.14 0 0 1 0-.14c.04-.08.12-.14.21-.14l6.72-.12c.82-.03 1.7-.67 2.03-1.46l.42-1c.02-.05.03-.1.01-.15C14.18 5.56 10.86 2.8 6.96 2.8 3.53 2.8.67 5.12.08 8.22c-.59-.44-1.32-.68-2.12-.6-1.38.14-2.49 1.24-2.63 2.62-.04.41 0 .8.1 1.16C-6.48 11.4-8 12.92-8 14.84c0 .18.01.37.04.55.01.08.08.14.16.14h20.68c.1 0 .18-.07.21-.16l.14-.5z" transform="translate(8, 1)" fill="#F6821F"/>
-          <path d="M14.34 8.78a.19.19 0 0 0-.18-.05.19.19 0 0 0-.13.12l-.3.96c-.09.31-.04.6.15.82.17.2.42.31.7.34l2.1.12c.08 0 .15.04.19.1a.23.23 0 0 1 0 .21.22.22 0 0 1-.2.15l-2.1.12c-.83.03-1.71.67-2.04 1.46l-.11.26c-.03.07 0 .14.08.14h7.15c.08 0 .16-.06.17-.14.1-.43.15-.88.15-1.35 0-3.3-2.68-5.98-5.98-5.98-.55 0-1.08.07-1.58.21z" transform="translate(8, 1)" fill="#FBAD41"/>
+        <svg class="cf-logo" viewBox="0 0 65 18" fill="none" xmlns="http://www.w3.org/2000/svg"
+          aria-label="Cloudflare logo">
+          <path
+            d="M13.23 13.57c.09-.31.04-.6-.15-.82-.17-.2-.42-.31-.7-.34L5.72 12.3a.14.14 0 0 1-.12-.08.14.14 0 0 1 0-.14c.04-.08.12-.14.21-.14l6.72-.12c.82-.03 1.7-.67 2.03-1.46l.42-1c.02-.05.03-.1.01-.15C14.18 5.56 10.86 2.8 6.96 2.8 3.53 2.8.67 5.12.08 8.22c-.59-.44-1.32-.68-2.12-.6-1.38.14-2.49 1.24-2.63 2.62-.04.41 0 .8.1 1.16C-6.48 11.4-8 12.92-8 14.84c0 .18.01.37.04.55.01.08.08.14.16.14h20.68c.1 0 .18-.07.21-.16l.14-.5z"
+            transform="translate(8, 1)" fill="#F6821F" />
+          <path
+            d="M14.34 8.78a.19.19 0 0 0-.18-.05.19.19 0 0 0-.13.12l-.3.96c-.09.31-.04.6.15.82.17.2.42.31.7.34l2.1.12c.08 0 .15.04.19.1a.23.23 0 0 1 0 .21.22.22 0 0 1-.2.15l-2.1.12c-.83.03-1.71.67-2.04 1.46l-.11.26c-.03.07 0 .14.08.14h7.15c.08 0 .16-.06.17-.14.1-.43.15-.88.15-1.35 0-3.3-2.68-5.98-5.98-5.98-.55 0-1.08.07-1.58.21z"
+            transform="translate(8, 1)" fill="#FBAD41" />
         </svg>
         <span class="logo-text">Compliance-aware Serverless Setup</span>
       </div>
@@ -26,7 +35,11 @@
         <span class="progress-label" id="progressLabel">0 / 6</span>
       </div>
       <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Open navigation menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
       </button>
     </div>
   </nav>
@@ -37,7 +50,10 @@
     <div class="menu-panel-header">
       <span class="menu-panel-title">Sections</span>
       <button class="menu-close" onclick="toggleMenu()" aria-label="Close menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
       </button>
     </div>
     <nav class="menu-nav">
@@ -95,15 +111,20 @@
   <!-- Persistent fixed footer navigation — managed by app.js -->
   <div class="step-nav" id="stepNav">
     <button class="btn btn-secondary" id="navBack" onclick="goToStep(currentStep - 1)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
       Back
     </button>
     <button class="btn btn-primary" id="navNext" onclick="goToStep(currentStep + 1)">
       <span id="navNextLabel">Next</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
     </button>
   </div>
 
   <script src="/app.js"></script>
 </body>
+
 </html>

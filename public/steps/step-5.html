@@ -2,31 +2,50 @@
 <div class="step-container">
   <div class="step-badge">Step 5 of 6</div>
   <h2>Data Localization Suite (DLS)</h2>
-  <p class="step-intro">An enterprise add-on that lets customers choose where Cloudflare inspects and stores data &mdash; without sacrificing security or performance.</p>
+  <p class="step-intro">An enterprise add-on that lets customers choose where Cloudflare inspects and stores data
+    &mdash; without sacrificing security or performance.</p>
 
   <div class="dls-grid">
     <div class="dls-card">
       <div class="dls-number">1</div>
-      <h3><a href="https://developers.cloudflare.com/data-localization/geo-key-manager/" target="_blank" rel="noopener">Geo Key Manager (GKM)</a></h3>
-      <p>Restricts which data centers hold your private SSL/TLS keys. Data centers without the key request a <strong>Session Key</strong> from an authorized one &mdash; adding minimal latency to the initial handshake only.</p>
+      <h3><a href="https://developers.cloudflare.com/data-localization/geo-key-manager/" target="_blank"
+          rel="noopener">Geo Key Manager (GKM)</a></h3>
+      <p>Restricts which data centers hold your private SSL/TLS keys. Data centers without the key request a
+        <strong>Session Key</strong> from an authorized one &mdash; adding minimal latency to the initial handshake
+        only.
+      </p>
       <div class="callout callout-tip">
-        <strong>GKM v2 (Closed Beta):</strong> <br>Supports custom country <code>allowlists</code>/<code>blocklists</code> beyond the original US/EU presets. <br><a href="https://developers.cloudflare.com/data-localization/geo-key-manager/" target="_blank" rel="noopener">Learn more</a>
+        <strong>GKM v2 (Closed Beta):</strong> <br>Supports custom country
+        <code>allowlists</code>/<code>blocklists</code> beyond the original US/EU presets. <br><a
+          href="https://developers.cloudflare.com/data-localization/geo-key-manager/" target="_blank"
+          rel="noopener">Learn more</a>
       </div>
     </div>
     <div class="dls-card">
       <div class="dls-number">2</div>
-      <h3><a href="https://developers.cloudflare.com/data-localization/regional-services/" target="_blank" rel="noopener">Regional Services (RS)</a></h3>
-      <p>Traffic is globally ingested with L3/L4 DDoS protection everywhere, but <strong>TLS termination and HTTP processing</strong> (Bot Management, WAF, Cache, Workers, Load Balancing) only happen inside the configured region.</p>
+      <h3><a href="https://developers.cloudflare.com/data-localization/regional-services/" target="_blank"
+          rel="noopener">Regional Services (RS)</a></h3>
+      <p>Traffic is globally ingested with L3/L4 DDoS protection everywhere, but <strong>TLS termination and HTTP
+          processing</strong> (Bot Management, WAF, Cache, Workers, Load Balancing) only happen inside the configured
+        region.</p>
       <div class="callout callout-info">
-        <strong>DNS-level setting:</strong> <br>A US user connecting to an EU-regionalized hostname is routed to an EU data center for processing. <br><a href="https://developers.cloudflare.com/data-localization/regional-services/" target="_blank" rel="noopener">Learn more</a>
+        <strong>DNS-level setting:</strong> <br>A US user connecting to an EU-regionalized hostname is routed to an EU
+        data center for processing. <br><a href="https://developers.cloudflare.com/data-localization/regional-services/"
+          target="_blank" rel="noopener">Learn more</a>
       </div>
     </div>
     <div class="dls-card">
       <div class="dls-number">3</div>
-      <h3><a href="https://developers.cloudflare.com/data-localization/metadata-boundary/" target="_blank" rel="noopener">Customer Metadata Boundary (CMB)</a></h3>
-      <p>An <strong>account-level</strong> setting ensuring Customer Logs (traffic metadata with your Account ID) are stored exclusively in the <code>EU</code> or <code>US</code>. Combine with <a href="https://developers.cloudflare.com/logs/logpush/" target="_blank" rel="noopener">Logpush</a> to export logs to your own storage.</p>
+      <h3><a href="https://developers.cloudflare.com/data-localization/metadata-boundary/" target="_blank"
+          rel="noopener">Customer Metadata Boundary (CMB)</a></h3>
+      <p>An <strong>account-level</strong> setting ensuring Customer Logs (traffic metadata with your Account ID) are
+        stored exclusively in the <code>EU</code> or <code>US</code>. Combine with <a
+          href="https://developers.cloudflare.com/logs/logpush/" target="_blank" rel="noopener">Logpush</a> to export
+        logs to your own storage.</p>
       <div class="callout callout-warning">
-        <strong>Account-wide:</strong> <br>CMB applies to all services on the account. <br><a href="https://developers.cloudflare.com/data-localization/metadata-boundary/" target="_blank" rel="noopener">Learn more</a>
+        <strong>Account-wide:</strong> <br>CMB applies to all services on the account. <br><a
+          href="https://developers.cloudflare.com/data-localization/metadata-boundary/" target="_blank"
+          rel="noopener">Learn more</a>
       </div>
     </div>
   </div>
@@ -40,7 +59,8 @@
       </div>
       <div class="stack-layer layer-2">
         <span class="stack-label">Geo Key Manager (GKM)</span>
-        <span class="stack-desc">Certificate-level &mdash; Private key storage region (can cover multiple hostnames)</span>
+        <span class="stack-desc">Certificate-level &mdash; Private key storage region (can cover multiple
+          hostnames)</span>
       </div>
       <div class="stack-layer layer-1">
         <span class="stack-label">Regional Services (RS)</span>
@@ -50,27 +70,41 @@
   </div>
 
   <div class="callout callout-tip">
-    <strong>Complementary (Add-On): <a href="https://developers.cloudflare.com/ssl/keyless-ssl/" target="_blank" rel="noopener">Keyless SSL</a></strong> <br>For organizations that cannot allow private keys to leave their infrastructure, Keyless SSL keeps the private key on the customer&rsquo;s own Hardware Security Module (HSM) or key server. During TLS handshakes, Cloudflare sends only the <a href="https://blog.cloudflare.com/keyless-ssl-the-nitty-gritty-technical-details/" target="_blank" rel="noopener">specific cryptographic operation</a> to the customer&rsquo;s key server over a mutually-authenticated TLS tunnel or Cloudflare Tunnel &mdash; the private key <strong>never</strong> touches Cloudflare&rsquo;s network.
+    <strong>Complementary (Add-On): <a href="https://developers.cloudflare.com/ssl/keyless-ssl/" target="_blank"
+        rel="noopener">Keyless SSL</a></strong> <br>For organizations that cannot allow private keys to leave their
+    infrastructure, Keyless SSL keeps the private key on the customer&rsquo;s own Hardware Security Module (HSM) or key
+    server. During TLS handshakes, Cloudflare sends only the <a
+      href="https://blog.cloudflare.com/keyless-ssl-the-nitty-gritty-technical-details/" target="_blank"
+      rel="noopener">specific cryptographic operation</a> to the customer&rsquo;s key server over a
+    mutually-authenticated TLS tunnel or Cloudflare Tunnel &mdash; the private key <strong>never</strong> touches
+    Cloudflare&rsquo;s network.
   </div>
 
   <div class="callout callout-warning">
-    <strong>Product compatibility:</strong> <br>Review the <a href="https://developers.cloudflare.com/data-localization/compatibility/" target="_blank" rel="noopener">Product Compatibility table</a> before designing your architecture to confirm which services work with GKM, RS, and CMB.
+    <strong>Product compatibility:</strong> <br>Review the <a
+      href="https://developers.cloudflare.com/data-localization/compatibility/" target="_blank" rel="noopener">Product
+      Compatibility table</a> before designing your architecture to confirm which services work with GKM, RS, and CMB.
   </div>
 
   <div class="doc-links-inline">
     <a href="https://developers.cloudflare.com/data-localization/" target="_blank" rel="noopener">DLS Overview</a>
-    <a href="https://developers.cloudflare.com/data-localization/compatibility/" target="_blank" rel="noopener">Product Compatibility</a>
+    <a href="https://developers.cloudflare.com/data-localization/compatibility/" target="_blank" rel="noopener">Product
+      Compatibility</a>
     <a href="https://developers.cloudflare.com/ssl/keyless-ssl/" target="_blank" rel="noopener">Keyless SSL</a>
   </div>
 
   <div class="step-nav">
     <button class="btn btn-secondary" onclick="goToStep(4)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
       Back
     </button>
     <button class="btn btn-primary" onclick="goToStep(6)">
       Next: Summary &amp; Quiz
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
     </button>
   </div>
 </div>

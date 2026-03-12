@@ -1,51 +1,76 @@
 <!-- Step 0: Overview -->
 <div class="step-container">
   <div class="step-badge">Overview</div>
-  <h1 class="hero-title">Compliance-aware<br/>Serverless Setup</h1>
-  <p class="hero-subtitle">An interactive walkthrough covering encryption, jurisdictional restrictions, business continuity, and the Cloudflare Data Localization Suite (DLS).</p>
+  <h1 class="hero-title">Compliance-aware<br />Serverless Setup</h1>
+  <p class="hero-subtitle">An interactive walkthrough covering encryption, jurisdictional restrictions, business
+    continuity, and the Cloudflare Data Localization Suite (DLS).</p>
 
   <div class="card-grid">
     <div class="info-card">
       <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
       </div>
       <h3>Data Security</h3>
-      <p>Organizations must ensure data is encrypted at rest and in transit, with auditable key management and no plaintext exposure.</p>
+      <p>Organizations must ensure data is encrypted at rest and in transit, with auditable key management and no
+        plaintext exposure.</p>
     </div>
     <div class="info-card">
       <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10" />
+          <path
+            d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+        </svg>
       </div>
       <h3>Jurisdictional Control</h3>
-      <p>Regulations require certain data to stay within specific geographies. Developers need built-in ways to restrict storage (data-at-rest) by region.</p>
+      <p>Regulations require certain data to stay within specific geographies. Developers need built-in ways to restrict
+        storage (data-at-rest) by region.</p>
     </div>
     <div class="info-card">
       <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path
+            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+        </svg>
       </div>
       <h3>Business Continuity</h3>
-      <p>Compliance frameworks mandate resilient architectures with failover, backups, and guaranteed uptime even during partial outages.</p>
+      <p>Compliance frameworks mandate resilient architectures with failover, backups, and guaranteed uptime even during
+        partial outages.</p>
     </div>
     <div class="info-card">
       <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+          <line x1="16" y1="17" x2="8" y2="17" />
+        </svg>
       </div>
       <h3>DLS Add-on</h3>
-      <p>Enterprises need granular technical control over where TLS keys, HTTP inspection, and metadata processing and storage occur within the network.</p>
+      <p>Enterprises need granular technical control over where TLS keys, HTTP inspection, and metadata processing and
+        storage occur within the network.</p>
     </div>
   </div>
 
   <div class="callout callout-info">
-    <strong>Why does this matter?</strong> <br>Political tension and evolving regulations mean compliance-sensitive organizations need configurable, region-aware serverless setups. Key frameworks include
+    <strong>Why does this matter?</strong> <br>Political tension and evolving regulations mean compliance-sensitive
+    organizations need configurable, region-aware serverless setups. Key frameworks include
     <a href="https://www.cloudflare.com/build-your-nis2-compliance-strategy/" target="_blank" rel="noopener">NIS2</a>,
-    <a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" target="_blank" rel="noopener">CRA</a>,
+    <a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" target="_blank"
+      rel="noopener">CRA</a>,
     <a href="https://www.cloudflare.com/pci-dss-compliance/" target="_blank" rel="noopener">PCI DSS</a>,
-    <a href="https://www.nist.gov/standardsgov/compliance-faqs-federal-information-processing-standards-fips" target="_blank" rel="noopener">FIPS</a>,
+    <a href="https://www.nist.gov/standardsgov/compliance-faqs-federal-information-processing-standards-fips"
+      target="_blank" rel="noopener">FIPS</a>,
     <a href="https://www.cisa.gov/secure-software-attestation-form" target="_blank" rel="noopener">CISA</a>,
-    <a href="https://www.cloudflare.com/trust-hub/compliance-resources/dora/" target="_blank" rel="noopener">DORA</a>, and the
+    <a href="https://www.cloudflare.com/trust-hub/compliance-resources/dora/" target="_blank" rel="noopener">DORA</a>,
+    and the
     <a href="https://www.cloudflare.com/trust-hub/responsible-ai/" target="_blank" rel="noopener">EU AI Act</a>.
   </div>
 
-  <p class="disclaimer">This walkthrough is for educational and demonstration purposes only. <br>Last update March 2026. Always refer to the <a href="https://developers.cloudflare.com/" target="_blank" rel="noopener">official Cloudflare DevDocs</a> for authoritative, up-to-date information.</p>
+  <p class="disclaimer">This walkthrough is for educational and demonstration purposes only. <br>Last update March 2026.
+    Always refer to the <a href="https://developers.cloudflare.com/" target="_blank" rel="noopener">official Cloudflare
+      DevDocs</a> for authoritative, up-to-date information.</p>
 
 </div>

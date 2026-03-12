@@ -2,7 +2,8 @@
 <div class="step-container">
   <div class="step-badge">Step 4 of 6</div>
   <h2>Jurisdictional Restrictions</h2>
-  <p class="step-intro">Built-in, product-level features to restrict data storage to specific geographic regions at creation time.</p>
+  <p class="step-intro">Built-in, product-level features to restrict data storage to specific geographic regions at
+    creation time.</p>
 
   <div class="jurisdiction-demo">
     <h3>Supported Jurisdictions</h3>
@@ -15,51 +16,64 @@
       </button>
     </div>
     <div class="jurisdiction-info" id="jurisdiction-eu">
-      <p>Restricts data storage to data centers within the European Union. Helps comply with <strong>GDPR</strong> and EU data residency requirements.</p>
+      <p>Restricts data storage to data centers within the European Union. Helps comply with <strong>GDPR</strong> and
+        EU data residency requirements.</p>
     </div>
     <div class="jurisdiction-info" id="jurisdiction-fedramp" style="display:none;">
-      <p>Restricts data storage to <strong>FedRAMP-compliant</strong> data centers within the United States. Required for US government workloads.</p>
+      <p>Restricts data storage to <strong>FedRAMP-compliant</strong> data centers within the United States. Required
+        for US government workloads.</p>
     </div>
   </div>
 
   <h3>Products with Jurisdiction Support</h3>
   <div class="product-jurisdiction-grid">
     <div class="pj-card">
-      <h4><a href="https://developers.cloudflare.com/r2/reference/data-location/" target="_blank" rel="noopener">R2 Object Storage</a></h4>
-      <p>Set jurisdiction on bucket creation via the dashboard or Wrangler CLI. Once set, all objects in the bucket are stored exclusively in the selected region.</p>
+      <h4><a href="https://developers.cloudflare.com/r2/reference/data-location/" target="_blank" rel="noopener">R2
+          Object Storage</a></h4>
+      <p>Set jurisdiction on bucket creation via the dashboard or Wrangler CLI. Once set, all objects in the bucket are
+        stored exclusively in the selected region.</p>
     </div>
     <div class="pj-card">
-      <h4><a href="https://developers.cloudflare.com/d1/configuration/data-location/" target="_blank" rel="noopener">D1 SQLite Database</a></h4>
-      <p>Set jurisdiction at database creation. The primary database and all replicas are stored exclusively within the selected region.</p>
+      <h4><a href="https://developers.cloudflare.com/d1/configuration/data-location/" target="_blank" rel="noopener">D1
+          SQLite Database</a></h4>
+      <p>Set jurisdiction at database creation. The primary database and all replicas are stored exclusively within the
+        selected region.</p>
     </div>
     <div class="pj-card">
-      <h4><a href="https://developers.cloudflare.com/durable-objects/reference/data-location/" target="_blank" rel="noopener">Durable Objects</a></h4>
-      <p>Restrict DO namespaces to a jurisdiction using the <code>jurisdiction()</code> API. All persisted data for the Durable Object stays within the selected region.</p>
+      <h4><a href="https://developers.cloudflare.com/durable-objects/reference/data-location/" target="_blank"
+          rel="noopener">Durable Objects</a></h4>
+      <p>Restrict DO namespaces to a jurisdiction using the <code>jurisdiction()</code> API. All persisted data for the
+        Durable Object stays within the selected region.</p>
     </div>
   </div>
 
   <div class="callout callout-warning">
-    <strong>Important:</strong> <br>Jurisdictions can only be set at creation time and cannot be changed later. Workers may still access jurisdiction-restricted resources from anywhere &mdash; the restriction controls where data itself is stored (data-at-rest).
-  </div>
-
-  <div class="callout callout-info">
-    <strong>European Union (EU) Presence:</strong> <br>Cloudflare operates <strong>47+ data centers across the EU</strong>, with Amsterdam serving as a major resilience hub. Combined with the <a href="https://developers.cloudflare.com/data-localization/" target="_blank" rel="noopener">Data Localization Suite</a>, R2/D1/DO jurisdiction flags, and <a href="https://www.cloudflare.com/trust-hub/compliance-resources/" target="_blank" rel="noopener">relevant certifications</a> (C5, EU Cloud CoC, EU-US DPF), these capabilities provide relevant building blocks for organizations working towards EU digital sovereignty goals around data residency and processing locality.
+    <strong>Important:</strong> <br>Jurisdictions can only be set at creation time and cannot be changed later. Workers
+    may still access jurisdiction-restricted resources from anywhere &mdash; the restriction controls where data itself
+    is stored (data-at-rest).
   </div>
 
   <div class="doc-links-inline">
-    <a href="https://developers.cloudflare.com/r2/reference/data-location/" target="_blank" rel="noopener">R2 Data Location</a>
-    <a href="https://developers.cloudflare.com/d1/configuration/data-location/" target="_blank" rel="noopener">D1 Data Location</a>
-    <a href="https://developers.cloudflare.com/durable-objects/reference/data-location/" target="_blank" rel="noopener">DO Data Location</a>
+    <a href="https://developers.cloudflare.com/r2/reference/data-location/" target="_blank" rel="noopener">R2 Data
+      Location</a>
+    <a href="https://developers.cloudflare.com/d1/configuration/data-location/" target="_blank" rel="noopener">D1 Data
+      Location</a>
+    <a href="https://developers.cloudflare.com/durable-objects/reference/data-location/" target="_blank"
+      rel="noopener">DO Data Location</a>
   </div>
 
   <div class="step-nav">
     <button class="btn btn-secondary" onclick="goToStep(3)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
       Back
     </button>
     <button class="btn btn-primary" onclick="goToStep(5)">
       Next: Data Localization Suite
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
     </button>
   </div>
 </div>
